@@ -1,0 +1,21 @@
+<%- include('partial/header') -%>
+
+    <div class="container">
+        <div class="form-user">
+            <form action="/users/forgot" method="POST" >
+                <h1 class="f-weight textalign font-20 font2 margin-b-20">Recover Otp</h1>
+                <% if(error){ %>
+                    <p class="font-red-400">
+                        <%= error %>
+                    </p>
+                    <% } %>
+                        <input class="formInput" type="email" name="email" placeholder="Enter email...">
+                        <div class="textalign">
+                            <input class="btn f-weight" type="submit" value="Sent Otp">
+                        </div>
+            </form>
+           
+        </div>
+    </div>
+
+    <%- include('partial/footer') -%>

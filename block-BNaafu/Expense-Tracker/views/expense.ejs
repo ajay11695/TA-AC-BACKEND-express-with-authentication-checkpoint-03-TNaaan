@@ -1,0 +1,16 @@
+<%- include('partial/header') -%>
+ 
+<div class="container">
+    <form action="/users/expense" method="POST" class="form-user">
+        <h1 class="f-weight textalign margin-b-20 font-20 font2">ADD EXPENSE</h1>
+        <input class="formInput" type="text" name="category" placeholder="Enter category...">
+        <input class="formInput" type="number" name="amount" placeholder="Enter amount..." >
+        <input class="formInput" type="date" name="date" >
+        <div class="textalign">
+        <input class="btn f-weight" type="submit" value="Add Expense">
+        </div>
+    </form>
+</div>
+
+
+<%- include('partial/footer') -%>

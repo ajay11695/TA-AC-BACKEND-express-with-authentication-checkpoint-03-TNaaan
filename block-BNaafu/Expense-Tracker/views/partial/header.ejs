@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <div class="flex">
+            <a href="/" class="font1 font-25 f-weight"><h1>EXPENSE TRACKER</h1></a>
+            <div>
+             <% if(user){ %>
+                <a class="margin-l-20 font1 f-weight margin-r-20" href=""> <%= user.name %></a>
+                <a class=" font1 f-weight margin-r-20" href="/users/logout">Log out</a>
+                <a class=" font1 f-weight Profile" href="/articles/new">Profile</a>
+                <ul>
+                    <li><%= user.name %></li>
+                    <li><%= user.email %></li>
+                    <li><%= user.phone %></li>
+                    <li>Verified: <%= user.isVerified %></li>
+                </ul>
+             <% } else { %>
+             <a href="/users/login " class="font1 f-weight margin-r-20">SignIn</a>
+             <a href="/users/register" class="font1 f-weight">Register</a>
+             <!-- <a href="/auth/github">Login with github</a>
+             <a href="/auth/google">Login with google</a> -->
+             <% } %>
+            </div>
+        </div>
+    </header>

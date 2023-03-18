@@ -1,0 +1,21 @@
+<%- include('partial/header') -%>
+
+<div class="container1">
+   <h1 class="font2 textalign margin-b-20">INCOME</h1>
+   <% if(data.length != 0){ %>
+      <% data.forEach((ele)=>{ %>
+         <div class="flex">
+            <div>
+               <h1 class="font-16 font2 margin-b-10"><%= ele.source %></h1>
+               <p class="margin-b-10"><%= ele.date %></p>
+            </div>
+            <p class="green">+ ₹<%= ele.amount %></p>
+         </div>
+         <hr>
+     <% })%>
+   <% } else { %>
+      <p>No Data Found</p>
+   <% } %>
+  
+</div>
+<%- include('partial/footer') -%>

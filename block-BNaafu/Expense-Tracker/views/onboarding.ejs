@@ -1,0 +1,144 @@
+<%- include('partial/header') -%>
+
+   <main class="dashboard">
+      <div class="flex">
+         <a class="btn f-weight" href="/users/income">Add Income</a>
+         <a class="btn f-weight" href="/users/expense">Add Expense</a>
+         <a class="btn f-weight" href="/users/onboarding">All History</a>
+         <a class="btn f-weight" href="/users/incomelist">Income List</a>
+         <a class="btn f-weight" href="/users/expenselist">Expense List</a>
+      </div>
+ 
+      <div class="flex flex-start">
+         <!-- saving -->
+         <article class="flex-30">
+            <h1 class="font-20 font2  margin-b-20">Income,Expense & saving </h1>
+           <div class="flex1">
+              <form action="/users/onboarding" class="margin-b-20 margin-r-20 ">
+               <input type="submit" name="saving" value="This Month" class="font2">
+              </form>
+              <form action="/users/onboarding" class="margin-b-20">
+               <input type="submit" name="saving" value="All Time" class="font2">
+              </form>
+           </div>
+            <h1 class="font-16 font2 ">Total Income:</h1>
+            <% if(totalIncome){ %>
+               <p class=" margin-b-10 green"><%= totalIncome %>/-</p>
+            <% } else { %>
+               <p>No Data</p>
+            <% } %>
+            <h1 class="font-16 font2 ">Total Expense:</h1>
+            <% if(totalExpense){ %>
+               <p class=" margin-b-10 red"><%= totalExpense %>/-</p>
+            <% } else { %>
+               <p>No Data</p>
+            <% } %>
+            <h1 class="font-16 font2">Total Saving:</h1>
+            <% if(totalSaving){ %>
+               <p class=" margin-b-10"><%= totalSaving %>/-</p>
+            <% } else { %>
+               <p>No Data</p>
+            <% } %>
+         </article>
+             
+         <!-- history -->
+         <article class="flex-40">
+            <h1 class="font-20 font2 textalign margin-b-20">History</h1>
+            <% if(data.length != 0){ %>
+               <% data.forEach((ele)=>{ %>
+                 <% if(ele.source){ %>
+                  <div class="flex">
+                     <div>
+                        <h1 class="font-16 font2 margin-b-10"><%= ele.source %></h1>
+                        <p class="margin-b-10"><%= ele.date %></p>
+                     </div>
+                     <p class="green">+ ₹<%= ele.amount %></p>
+                  </div>
+                  <hr>
+                <% }else{ %>
+                  <div class="flex">
+                     <div>
+                        <h1 class="font-16 font2 margin-b-10"><%= ele.category %></h1>
+                        <p class="margin-b-10"><%= ele.date %></p>
+                     </div>
+                     <p class="red">- ₹<%= ele.amount %></p>
+                  </div>
+                  <hr>
+                 <% } %>
+              <% })%>
+            <% } else { %>
+               <p class="textalign ">No Data Found</p>
+            <% } %>
+         </article>
+        
+         <!-- filter -->
+         <aside class="flex-30">
+        
+            <!-- filter by month -->
+            <form action="/users/onboarding" class="form-filter">
+                <h2 class="font2 textalign margin-b-10">Filter Saving by Month and Year</h2>
+                <input class="filterInput" type="month" name="month" >
+                <div class="textalign">
+                <input class="btn f-weight"  type="submit" value="check">
+                </div>
+            </form>
+
+            <!-- filter by source -->
+            <form action="/users/onboarding" class="form-filter">
+                <h2 class="font2 textalign margin-b-10">Filter by Source</h2>
+                <select class="filterInput" name="source">
+                    <% incomes.forEach((income)=> { %>
+                        <option value="<%=income %>">
+                            <%=income %>
+                        </option>
+                        <% })%>
+                </select>
+                <div class="textalign">
+                  <input class="btn f-weight"  type="submit" value="check">
+                  </div>
+            </form>
+
+            <!-- filter by category -->
+            <form action="/users/onboarding" class="form-filter">
+                <h2 class="font2 textalign margin-b-10">Filter by Category</h2>
+                <select class="filterInput" name="category">
+                    <% expenses.forEach((expense)=> { %>
+                        <option value="<%=expense %>">
+                            <%=expense %>
+                        </option>
+                        <% })%>
+                </select>
+                <div class="textalign">
+                  <input class="btn f-weight"  type="submit" value="check">
+                  </div>
+            </form>
+
+
+            <!-- filter by category using date -->
+            <form action="/users/onboarding" class="form-filter">
+                <h2 class="font2 textalign margin-b-10">Filter Category by using date</h2>
+                <select class="filterInput" name="category">
+                    <% expenses.forEach((expense)=> { %>
+                        <option value="<%=expense %>">
+                            <%=expense %>
+                        </option>
+                        <% })%>
+                </select>
+                <!-- filter by date -->
+                <h2 class="font2 textalign margin-b-10">Filter by Date</h2>
+                <div class="flex">
+                    <input class="margin-b-10" type="date" name="start_date" placeholder="Date">
+                    <span class="margin-b-10">To</span>
+                    <input class="margin-b-10" type="date" name="end_date" placeholder="Date">
+                </div>
+
+                <div class="textalign">
+                  <input class="btn f-weight" type="submit" value="check">
+                  </div>
+            </form>
+         </aside>
+      </div>
+   </main>
+
+
+<%- include('partial/footer') -%>
